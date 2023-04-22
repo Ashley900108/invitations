@@ -1,0 +1,66 @@
+---
+title: "Task_2"
+format: html
+editor: visual
+date: "April 21, 2023"
+execute:
+  keep-md: true
+  format:
+  html:
+    code-fold: true
+    code-line-numbers: true
+---
+
+
+
+## First Website
+
+[How are You Doing](https://pudding.cool/2022/12/emotion-wheel/)
+
+#### What is unique or good about the visualization?
+
+The visualization of the website looks pretty and comfortable. The topic of the website is also interesting and common enough for the people to feel interested in and provide data for it.
+
+#### What could be better?
+
+It would take a long time for people to finish watching and answering question to the whole website. I would suggest the author to discard the questions that might not be so interesting or useful. It is also kind of hard to differentiate the questions from the other discriptions of the web page.
+
+## Second Website
+
+[Upward Mobility](https://pudding.cool/2022/11/upward-mobility/)
+
+#### What is unique or good about the visualization?
+
+The visualization of the website looks creative. The topic of the website is meaningful for keeping to the author's family because it contain some family stories.
+
+#### What could be better?
+
+The website can also be collecting other people's data to make it more meaningful.
+
+## Third Website
+
+[The Sound of Mexico City](https://pudding.cool/2022/09/cdmx/)
+
+#### What is unique or good about the visualization?
+
+The visualization of the website looks cofortable and cute. The topic of the website is meaningful for the people who wants to know about Mexico City and for the Mexicon people who want to introduce their hometown. 
+
+#### What could be better?
+
+The website can also be collecting other people's data to make it more meaningful.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+plot(1:20)
+```
+
+::: {.cell-output-display}
+![](Task_2_files/figure-html/unnamed-chunk-1-1.png){width=672}
+:::
+:::
+
+::: {.cell}
+
+:::
