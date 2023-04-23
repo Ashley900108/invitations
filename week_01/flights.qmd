@@ -1,0 +1,66 @@
+---
+title: "Flights"
+format: html
+editor: visual
+date: "April 22, 2023"
+execute:
+  keep-md: true
+  format:
+  html:
+    code-fold: true
+    code-line-numbers: true
+---
+
+
+```{r,Warning=FALSE,Message=FALSE}
+library(tidyverse)
+library(nycflights13)
+library(ggplot2)
+library(pander)
+library(DT)
+```
+
+## Summary
+
+I chose the Flight Carrier and the Delay Arrival Time as the topic of this assignment. I personally have experienced some plane delays and know the painfulness of having to stay in the airport for a longer time than expected. Therefore, I thought knowing the flight carrier that avoid the arrival delay well can be helpful for every person who travel with air planes.
+
+```{r}
+fl1<-flights%>%select(c(carrier,arr_delay))%>%filter(arr_delay!="NA")
+```
+
+## First Variable -- Carrier
+
+```{r}
+table(fl1$carrier)%>%pander
+```
+
+## Second Variable -- Arrival Delay Time (min) {.tabset}
+
+### Hide
+
+### Show
+
+```{r, Warning=FALSE}
+fl3<-fl1%>%select(arr_delay)
+datatable(fl3)
+```
+##
+
+## Combination of the Two Variables
+```{r}
+ggplot(fl1, aes(x=factor(carrier), y=arr_delay))+
+geom_boxplot(fill="skyblue", color="black")+
+ylim(-87,1273)
+```
+
+
+## Conclusion
+
+Looks like AS, HA, and OO Carriers are doing comparily well on not having so much delay on arrival.
+
+
+```{r}
+#| warning: false
+#| echo: false
+```
+
