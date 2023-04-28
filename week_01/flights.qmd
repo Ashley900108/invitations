@@ -1,11 +1,10 @@
 ---
-title: "Flights"
-format: html
-editor: visual
-date: "April 22, 2023"
+title: "[Flights]"
 execute:
   keep-md: true
-  format:
+  df-print: paged
+  warning: false
+format:
   html:
     code-fold: true
     code-line-numbers: true
