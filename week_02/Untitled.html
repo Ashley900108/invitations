@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Gapminder</title>
+<title>gdp</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Gapminder</h1>
+<h1 class="title">gdp</h1>
 </div>
 
 
@@ -100,36 +100,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>gapminder1<span class="ot">&lt;-</span>gapminder<span class="sc">%&gt;%</span><span class="fu">filter</span>(country<span class="sc">!=</span><span class="st">"Kuwait"</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>  <span class="fu">mutate</span>(<span class="at">population =</span> <span class="fu">case_when</span>(</span>
-<span id="cb1-3"><a href="#cb1-3"></a>           pop<span class="sc">&lt;</span> <span class="dv">5000000</span> <span class="sc">~</span> <span class="st">" 2500"</span>,</span>
-<span id="cb1-4"><a href="#cb1-4"></a>           pop<span class="sc">&gt;</span> <span class="dv">4999999</span> <span class="sc">&amp;</span> pop<span class="sc">&lt;</span><span class="dv">7500000</span> <span class="sc">~</span> <span class="st">" 5000"</span>,</span>
-<span id="cb1-5"><a href="#cb1-5"></a>           pop<span class="sc">&gt;</span> <span class="dv">7499999</span> <span class="sc">&amp;</span> pop<span class="sc">&lt;</span><span class="dv">10000000</span><span class="sc">~</span> <span class="st">" 7500"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6"></a>           pop<span class="sc">&gt;</span> <span class="dv">9999999</span> <span class="sc">&amp;</span> pop<span class="sc">&lt;</span><span class="dv">12500000</span> <span class="sc">~</span> <span class="st">"10000"</span>,</span>
-<span id="cb1-7"><a href="#cb1-7"></a>           pop<span class="sc">&gt;</span> <span class="dv">12499999</span> <span class="sc">~</span><span class="st">"12500"</span>))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span>gapminder1, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>lifeExp, <span class="at">y=</span>gdpPercap, </span>
-<span id="cb2-2"><a href="#cb2-2"></a>                                  <span class="at">color =</span> continent,</span>
-<span id="cb2-3"><a href="#cb2-3"></a>                                  <span class="at">size =</span> population)) <span class="sc">+</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="dv">20</span>)<span class="sc">+</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">"sqrt"</span>)<span class="sc">+</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">"sqrt"</span>) <span class="sc">+</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="fu">scale_color_manual</span>(<span class="at">values =</span><span class="fu">c</span>(<span class="st">"red"</span>,<span class="st">"yellow"</span>,<span class="st">"green"</span>,<span class="st">"skyblue"</span>,<span class="st">"purple"</span>))<span class="sc">+</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="fu">labs</span>(<span class="at">x=</span> <span class="st">"Life Expectancy"</span>,</span>
-<span id="cb2-11"><a href="#cb2-11"></a>     <span class="at">y =</span> <span class="st">"GDP per Capita"</span>,</span>
-<span id="cb2-12"><a href="#cb2-12"></a>     <span class="at">size =</span> <span class="st">"Population (100K)"</span>,</span>
-<span id="cb2-13"><a href="#cb2-13"></a>     <span class="at">color =</span> <span class="st">"continent"</span>) <span class="sc">+</span> </span>
-<span id="cb2-14"><a href="#cb2-14"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="fu">facet_wrap</span>(<span class="sc">~</span>year, <span class="at">nrow=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>gapminder1<span class="ot">&lt;-</span>gapminder<span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">filter</span>(country<span class="sc">!=</span><span class="st">"Kuwait"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="fu">mutate</span>(<span class="at">population1 =</span> <span class="fu">case_when</span>(pop<span class="sc">/</span><span class="dv">100000</span><span class="sc">&lt;</span><span class="dv">10000</span><span class="sc">~</span><span class="dv">10000</span>,</span>
+<span id="cb2-4"><a href="#cb2-4"></a>         pop<span class="sc">/</span><span class="dv">100000</span><span class="sc">&lt;</span><span class="dv">20000</span><span class="sc">~</span><span class="dv">20000</span>,</span>
+<span id="cb2-5"><a href="#cb2-5"></a>         pop<span class="sc">/</span><span class="dv">100000</span><span class="sc">&lt;</span><span class="dv">30000</span><span class="sc">~</span><span class="dv">30000</span>))</span>
+<span id="cb2-6"><a href="#cb2-6"></a>gapminder2<span class="ot">&lt;-</span>gapminder1<span class="sc">%&gt;%</span> </span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">group_by</span>(year, continent) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-8"><a href="#cb2-8"></a>   <span class="fu">summarise</span>(<span class="at">ave =</span> <span class="fu">weighted.mean</span>(gdpPercap))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gapminder1, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>gdpPercap, </span>
+<span id="cb3-2"><a href="#cb3-2"></a>                                  <span class="at">color =</span> continent,</span>
+<span id="cb3-3"><a href="#cb3-3"></a>                                  <span class="at">size =</span> population1,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>                                  <span class="at">line=</span>country)) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="fu">geom_line</span>(<span class="at">size=</span>.<span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="fu">scale_x_continuous</span>()<span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="fu">scale_y_continuous</span>() <span class="sc">+</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="fu">labs</span>(<span class="at">x=</span> <span class="st">"Year"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10"></a>     <span class="at">y =</span> <span class="st">"GDP per Capita"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11"></a>     <span class="at">size =</span> <span class="st">"Population (100K)"</span>,</span>
+<span id="cb3-12"><a href="#cb3-12"></a>     <span class="at">color =</span> <span class="st">"continent"</span>) <span class="sc">+</span> </span>
+<span id="cb3-13"><a href="#cb3-13"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="fu">facet_wrap</span>(<span class="sc">~</span>continent, <span class="at">nrow=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="Untitled_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<p><img src="Untitled_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a> <span class="fu">geom_hline</span>(<span class="at">data =</span> gapminder2,</span>
+<span id="cb4-2"><a href="#cb4-2"></a>                <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y=</span>gdpPercap)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>mapping: y = ~gdpPercap 
+geom_hline: na.rm = FALSE
+stat_identity: na.rm = FALSE
+position_identity </code></pre>
 </div>
 </div>
 
